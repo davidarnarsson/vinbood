@@ -8,18 +8,11 @@ import SearchResults from "../models/SearchResults";
 export default class SearchResolver {
   @Query(() => SearchResults)
   public async search(@Args() args: SearchQuery): Promise<SearchResults> {
-    
     const results: any = await search(args);
-    console.log(args, results)
-    if (results.data) {
-      const out = new SearchResults();
 
-      out.results = results.data.map(SearchResult.fromResponse);
-      out.total = results.total;
-
-      return out;
-    }
-
-    throw new Error("bad request")
+    return {
+      results: results.data.map(SearchResult.fromResponse),
+      total: results.total,
+    };
   }
 }
