@@ -15,7 +15,7 @@ async function main() {
     schema,
   });
 
-  const { url } = await server.listen(3000);
+  const { url } = await server.listen(process.env.PORT ?? 3000);
 
   console.log(`Vinbood running: ${url}`);
 }
