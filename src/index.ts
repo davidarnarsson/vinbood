@@ -13,6 +13,7 @@ async function main() {
   const server = new ApolloServer({
     playground: true,
     schema,
+    introspection: true,
   });
 
   const { url } = await server.listen(process.env.PORT ?? 3000);
